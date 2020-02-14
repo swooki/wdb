@@ -1,0 +1,26 @@
+<%- include("partials/header") %>
+<div class="ui main text container segment">
+	<div class="ui huge header">Edit <%= prayer.title %></div>
+	<form class="ui form" action="/prayers/<%= prayer._id %>?_method=PUT" method="POST">
+		<div class="field">
+			<lable>Title</lable>
+			<input type="text"	name="prayer[title]" value="<%=prayer.title%>">
+		</div>
+		<div class="field">
+			<lable>URL</lable>
+			<input type="text"	name="prayer[image]" value="<%=prayer.image%>">
+		</div>
+		<div class="field">
+			<lable>Requester</lable>
+			<input type="text"	name="prayer[requester]" value="<%=prayer.requester%>">
+		</div>
+		<div class="field">
+			<lable>Prayer</lable>
+			<textarea name="prayer[content]" placeholder="blog post goes here"><%=prayer.content%></textarea>
+		</div>
+		<div class="field">
+			<input class="ui primary button" type="submit">
+		</div>
+	</form>
+</div>
+<%- include("partials/footer") %>

@@ -1,0 +1,17 @@
+{
+  "name": "apis",
+  "version": "1.0.0",
+  "description": "",
+  "main": "firstRequest.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sungwook",
+  "license": "ISC",
+  "dependencies": {
+    "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "locus": "^2.0.4"
+  }
+}

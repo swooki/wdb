@@ -1,0 +1,14 @@
+<%- include("partials/header") %>
+<h1>
+	New Member
+</h1>
+<div>
+	<form action="/members", method="POST">
+		<input type="text", name="name", placeholder="name">
+		<input type="text", name="address", placeholder="address">
+		<button>Submit!</button>
+	</form>
+</div>
+<a href="/members">Go Back!</a>
+
+<%- include("partials/footer") %>

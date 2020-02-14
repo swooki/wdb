@@ -1,0 +1,26 @@
+<%- include("partials/header") %>
+<div class="ui main text container segment">
+	<div class="ui huge header">New Blog</div>
+	<form class="ui form" action="/prayers" method="POST">
+		<div class="field">
+			<lable>Title</lable>
+			<input type="text"	name="prayer[title]" placeholder="title">
+		</div>
+		<div class="field">
+			<lable>Image</lable>
+			<input type="text"	name="prayer[image]" placeholder="image">
+		</div>
+		<div class="field">
+			<lable>Requester</lable>
+			<input type="text"	name="prayer[requester]" placeholder="requester">
+		</div>
+		<div class="field">
+			<lable>Content</lable>
+			<textarea name="prayer[content]" placeholder="blog post goes here"></textarea>
+		</div>
+		<div class="field">
+			<input class="ui primary button" type="submit">
+		</div>
+	</form>
+</div>
+<%- include("partials/footer") %>

@@ -1,0 +1,46 @@
+EJS has recently been updated to v3.0.1 and now uses the following syntax:
+
+<%- include("partials/header") %>
+<%- include("partials/footer") %>
+
+Unit 293
+# Layout and basic styling
+  * Create our header and footer partials
+  * Add in Bootstrap
+
+Unit 294
+# Creating New Camprounds
+  * Setup new campground POST route
+  * install body-parser
+  * Add in body-parser
+  * Setup route to show form
+  * Add basic unstyled form
+
+Unit 296
+# Style the campgrounds page
+  * Add a better header/title
+  * Make campgrounds display in a grid
+  
+RESTful Routes
+Name	URL(Path)		verb	description
+================================================
+INDEX	/dogs			GET		Display a list of all dogs
+NEW		/dogs/new		GET		Displays form to make a new dogs
+CREATE	/dogs			POST	Add new dog to DB
+SHOW	/dogs/:id 		GET		Shows info about one dog
+EDIT	/dogs/:id/edit	GET		Show edit form for on dog
+UPDATE	/dogs/:id		PUT		Update a particular dog, then redirect somewhere
+DESTROY /dogs/:id		DELETE	Delete a particular 
+
+Unit 332
+
+Nested Routes for comments
+Name	URL(Path)							verb	description
+=================================================================
+NEW 	/campgrounds/:id/comments/new		GET
+CREATE	/campgrounds/:id/comments			POST
+
+
+
+
+

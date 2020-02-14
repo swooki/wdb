@@ -1,0 +1,25 @@
+<%- include("partials/header") %>
+<div class="container">
+	<header class="jumbotron">
+		<div class="container">
+			<h1>Welcome To MyDirectory!</h1>
+			<p>View my directory from awhere in the world</p>
+			<p>
+				<a class="btn btn-primary btn-large" href="/members/new">Add New Member</a>
+			</p>
+		</div>
+	</header>	
+	<div class="row">
+		<% members.forEach(function(member){ %>
+		<div class="col-lg-3 col-md-6">
+			<div>
+				<p><%= member.name%></p>
+				<hr>
+				<p><%= member.address %></p>
+			</div>
+
+		</div>
+		<% }); %>
+	</div>
+</div>
+<%- include("partials/footer") %>
