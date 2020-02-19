@@ -16,3 +16,7 @@ body {
 .caption{
 	padding:0px;
 }
+
+#delete-form{
+	display: inline;
+}
