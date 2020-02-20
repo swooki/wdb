@@ -20,3 +20,7 @@ body {
 #delete-form{
 	display: inline;
 }
+
+#delete-comment-form{
+	display: inline;
+}

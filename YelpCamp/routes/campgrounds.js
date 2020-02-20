@@ -62,20 +62,14 @@ router.get("/:id", function(req, res){
 });
 
 // EDIT Campground
-router.get("/:id/edit", function(req, res){
+router.get("/:id/edit", checkCampgroundOwnership, function(req, res){
 	Campground.findById(req.params.id, function(err, foundCampground){
-        if(err){
-            console.log(err);
-        } else {
-            console.log(foundCampground)
-            //render show template with that campground
-            res.render("campgrounds/edit", {campground: foundCampground});
-        }
-    });
+		res.render("campgrounds/edit", {campground: foundCampground});	
+	});
 })
 
 // Update campground route
-router.put("/:id", function(req, res){
+router.put("/:id", checkCampgroundOwnership, function(req, res){
 	Campground.findByIdAndUpdate(req.params.id, req.body.campground, function(err, updatedCampground) {
 		if(err){
 			console.log(err);
@@ -87,7 +81,7 @@ router.put("/:id", function(req, res){
 
 
 // Destroy campground route
-router.delete("/:id", function(req, res){
+router.delete("/:id", checkCampgroundOwnership, function(req, res){
 	Campground.findByIdAndDelete(req.params.id, function(err) {
 		if(err){
 			console.log(err);
@@ -105,8 +99,28 @@ function isLoggedIn(req, res, next){
         return next();
     }
     res.redirect("/login");
-}
+};
 
+function checkCampgroundOwnership(req, res, next) {
+	if(req.isAuthenticated()){
+		// if not, redirect
+		Campground.findById(req.params.id, function(err, foundCampground){
+			if(err){
+				res.redirect("back");
+			} else {
+				// how to compare ids
+				if(foundCampground.author.id.equals(req.user._id)) {
+					//render show template with that campground
+					next();
+				} else {
+					res.redirect("back");
+				}
+			}
+		});
+	} else {
+		res.redirect("back");
+	}
+};
 
 module.exports = router;
 
