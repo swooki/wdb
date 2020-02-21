@@ -29,8 +29,6 @@ router.post("/", middleware.isLoggedIn, function(req, res){
 	}
     var newCampground = {name: name, image: image, description: desc, author:author}
 	
-	
-	
     // Create a new campground and save to DB
     Campground.create(newCampground, function(err, newlyCreated){
         if(err){
@@ -71,10 +69,11 @@ router.get("/:id/edit", middleware.checkCampgroundOwnership, function(req, res){
 
 // Update campground route
 router.put("/:id", middleware.checkCampgroundOwnership, function(req, res){
-	Campground.findByIdAndUpdate(req.params.id, req.body.campground, function(err, updatedCampground) {
+	Campground.findByIdAndUpdate(req.params.id, req.body.campground, function(err, updatedCampground){
 		if(err){
 			console.log(err);
 		} else {
+			
 			res.redirect("/campgrounds/" + req.params.id);
 		}
 	});

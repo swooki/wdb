@@ -5,10 +5,13 @@ var express     = require("express"),
     passport    = require("passport"),
     LocalStrategy = require("passport-local"),
 	methodOverride = require("method-override"),
-    Campground  = require("./models/campground"),
+	flash		= require("connect-flash");
+
+	Campground  = require("./models/campground"),
     Comment     = require("./models/comment"),
     User        = require("./models/user"),
-    seedDB      = require("./seeds");
+
+	seedDB      = require("./seeds");
 
 // requiring routes
 var campgroundRoutes = require("./routes/campgrounds"),
@@ -25,6 +28,9 @@ app.use(methodOverride("_method"));
 
 // seedDB();	// seed the database
 
+app.use(flash());
+
+
 // PASSPORT CONFIGURATION
 app.use(require("express-session")({
     secret: "Once again Rusty wins cutest dog!",
@@ -38,13 +44,21 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use(function(req, res, next){
-   res.locals.currentUser = req.user;
-   next();
+   	res.locals.currentUser = req.user;
+	res.locals.error = req.flash("error");
+	res.locals.success = req.flash("success");
+   	next();	
 });
 
+
+
+
+// use external routes 
 app.use("/", indexRoutes);
 app.use("/campgrounds", campgroundRoutes);
 app.use("/campgrounds/:id/comments", commentRoutes);
+
+
 
 app.listen(process.env.PORT, function() {
 	console.log("YelpCamp Server Has Started!")

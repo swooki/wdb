@@ -19,11 +19,15 @@ router.post("/register", function(req, res){
     var newUser = new User({username: req.body.username});
     User.register(newUser, req.body.password, function(err, user){
         if(err){
-            console.log(err);
-            return res.render("register");
+			// Basically, req.flash() is meant to be used with res.redirect().
+			// When using res.render() you can just pass the flash message directly 
+			// as the second argument, since res.render offers the ability 
+			// to pass values to the template.
+            return res.render("register", {error: err.message});
         }
         passport.authenticate("local")(req, res, function(){
-           res.redirect("/campgrounds"); 
+			req.flash("success", "Welcome to YelpCamp!");
+			res.redirect("/campgrounds"); 
         });
     });
 });
@@ -32,6 +36,7 @@ router.post("/register", function(req, res){
 router.get("/login", function(req, res){
    res.render("login"); 
 });
+
 // handling login logic
 router.post("/login", passport.authenticate("local", 
     {
@@ -42,8 +47,9 @@ router.post("/login", passport.authenticate("local",
 
 // logic route
 router.get("/logout", function(req, res){
-   req.logout();
-   res.redirect("/campgrounds");
+   	req.logout();
+	req.flash("success", "Logged you out!");
+   	res.redirect("/campgrounds");
 }); 
 
 function isLoggedIn(req, res, next){
